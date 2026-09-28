@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Md Mahabubur Rahman | AI for Predictive Maintenance</title>
+<meta name="description" content="Md Mahabubur Rahman, PhD researcher in Computing at Glasgow Caledonian University, working on AI-driven predictive maintenance, time-series forecasting, reliability analysis and explainable AI.">
+<meta property="og:title" content="Md Mahabubur Rahman | AI for Predictive Maintenance">
+<meta property="og:description" content="PhD researcher building AI-driven predictive maintenance systems for safety-critical engineering assets.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f3864'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='26' font-weight='700' fill='white' text-anchor='middle'%3EMR%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f8fb; --surface:#ffffff; --surface-2:#eef2f8; --text:#1a2233; --muted:#5a6478;
+  --line:#dde3ee; --brand:#1f3864; --accent:#0f7b8a; --accent-soft:#e3f3f5; --chip:#eef2f8;
+  --shadow:0 1px 2px rgba(16,24,40,.05),0 4px 16px rgba(16,24,40,.06);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1420; --surface:#151d2c; --surface-2:#1b2536; --text:#e7ecf5; --muted:#9aa6bb;
+    --line:#26324a; --brand:#9db8ea; --accent:#4fc3d1; --accent-soft:#12303a; --chip:#1d2840;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1420; --surface:#151d2c; --surface-2:#1b2536; --text:#e7ecf5; --muted:#9aa6bb;
+  --line:#26324a; --brand:#9db8ea; --accent:#4fc3d1; --accent-soft:#12303a; --chip:#1d2840;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px;gap:12px}
+.logo{font-weight:700;color:var(--brand);letter-spacing:.2px;white-space:nowrap}
+.links{display:flex;gap:18px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.links::-webkit-scrollbar{display:none}
+.links a{color:var(--muted);font-size:14px;font-weight:500;white-space:nowrap}
+.links a:hover{color:var(--text);text-decoration:none}
+.theme-btn{border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:8px;width:34px;height:34px;cursor:pointer;flex:0 0 auto;font-size:15px}
+
+/* hero */
+.hero{padding:64px 0 40px}
+.hero-grid{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:center}
+.avatar{width:200px;height:200px;border-radius:50%;overflow:hidden;background:linear-gradient(135deg,var(--brand),var(--accent));display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);border:4px solid var(--surface)}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.avatar span{color:#fff;font-size:56px;font-weight:700;letter-spacing:1px}
+.eyebrow{display:inline-block;font-size:13px;font-weight:600;color:var(--accent);background:var(--accent-soft);padding:4px 10px;border-radius:999px;margin-bottom:12px}
+h1{font-size:40px;line-height:1.15;margin:0 0 10px;color:var(--text);letter-spacing:-.5px}
+.role{font-size:19px;color:var(--muted);margin:0 0 18px;font-weight:500}
+.lead{font-size:16.5px;max-width:640px;margin:0 0 22px}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;font-weight:600;font-size:14.5px;border:1px solid var(--line);background:var(--surface);color:var(--text)}
+.btn:hover{text-decoration:none;border-color:var(--accent)}
+.btn.primary{background:var(--brand);color:#fff;border-color:var(--brand)}
+:root[data-theme="dark"] .btn.primary{color:#0e1420}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn.primary{color:#0e1420}}
+.meta{margin-top:18px;color:var(--muted);font-size:14px;display:flex;flex-wrap:wrap;gap:6px 18px}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:8px 0 10px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+.stat b{display:block;font-size:26px;color:var(--brand);line-height:1.1}
+.stat span{font-size:13.5px;color:var(--muted)}
+
+/* sections */
+section{padding:46px 0}
+h2{font-size:26px;margin:0 0 6px;letter-spacing:-.3px}
+.sub{color:var(--muted);margin:0 0 24px;max-width:720px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow)}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card h3{margin:0 0 6px;font-size:17px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.tag{display:inline-block;font-size:12px;font-weight:600;color:var(--accent);margin-bottom:8px;text-transform:uppercase;letter-spacing:.6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chip{font-size:12.5px;padding:3px 9px;border-radius:999px;background:var(--chip);color:var(--text);border:1px solid var(--line)}
+
+/* flagship */
+.flagship{display:grid;grid-template-columns:1.05fr 1fr;gap:26px;align-items:start}
+.flagship ul{margin:10px 0 0;padding-left:18px;color:var(--muted);font-size:15px}
+.flagship li{margin:6px 0}
+.flagship li b{color:var(--text)}
+.project ul{margin:12px 0 0;padding-left:18px;color:var(--muted);font-size:15px}
+.project li{margin:6px 0}
+.project li b{color:var(--text)}
+.diagram{background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:14px}
+.diagram svg{width:100%;height:auto;display:block}
+.diagram .box{fill:var(--surface);stroke:var(--line)}
+.diagram .hl{fill:var(--accent-soft);stroke:var(--accent)}
+.diagram text{fill:var(--text);font-family:Inter,system-ui,sans-serif;font-size:12.5px}
+.diagram .small{fill:var(--muted);font-size:10.5px}
+.diagram .arrow{stroke:var(--muted);stroke-width:1.6;fill:none}
+.diagram .head{fill:var(--muted)}
+.caption{font-size:13px;color:var(--muted);margin:10px 2px 0}
+
+/* timeline */
+.timeline{position:relative;padding-left:22px}
+.timeline:before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.t-item{position:relative;margin-bottom:22px}
+.t-item:before{content:"";position:absolute;left:-21px;top:7px;width:12px;height:12px;border-radius:50%;background:var(--surface);border:3px solid var(--accent)}
+.t-head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.t-head h3{margin:0;font-size:16.5px}
+.t-date{font-size:13.5px;color:var(--muted);white-space:nowrap}
+.t-org{color:var(--muted);font-size:14.5px;margin:2px 0 6px;font-style:italic}
+.t-item p{margin:0;font-size:15px}
+
+/* pubs */
+.pubs{list-style:none;padding:0;margin:0;counter-reset:p}
+.pubs li{counter-increment:p;position:relative;padding:14px 16px 14px 52px;border:1px solid var(--line);border-radius:12px;background:var(--surface);margin-bottom:10px}
+.pubs li:before{content:counter(p);position:absolute;left:14px;top:14px;width:26px;height:26px;border-radius:8px;background:var(--accent-soft);color:var(--accent);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
+.pubs .title{font-weight:600;display:block}
+.pubs .venue{color:var(--muted);font-size:14.5px}
+.pubs .year{font-size:12px;font-weight:600;color:var(--accent);margin-left:6px}
+
+/* skills */
+.edu{display:grid;gap:16px}
+.edu ul{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:15px}
+.edu li{margin:5px 0}
+.edu .edu-thesis{color:var(--text);margin-top:4px}
+.dist{font-size:12px;font-weight:600;color:var(--accent);background:var(--accent-soft);padding:2px 8px;border-radius:999px;margin-left:6px;vertical-align:middle}
+.skill-group h3{font-size:15px;margin:0 0 4px}
+
+.focus{display:flex;flex-wrap:wrap;gap:10px;margin:-8px 0 24px}
+.focus span{font-weight:600;font-size:14.5px;padding:8px 14px;border-radius:999px;background:var(--brand);color:#fff}
+:root[data-theme="dark"] .focus span{color:#0e1420}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .focus span{color:#0e1420}}
+.area{display:flex;gap:14px;align-items:flex-start}
+.area .ic{flex:0 0 40px;height:40px;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center}
+.area .ic svg{width:22px;height:22px}
+.cert{display:block;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;margin-bottom:12px}
+.cert img{width:100%;display:block;aspect-ratio:1/1.414;object-fit:cover;object-position:top}
+.cert:hover{border-color:var(--accent)}
+.card .note{font-size:12.5px;color:var(--muted);margin-top:8px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.form{display:flex;flex-direction:column;gap:6px}
+.form label{font-size:13.5px;font-weight:600;color:var(--text);margin-top:6px}
+.form input,.form textarea{font:inherit;font-size:15px;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--text);width:100%}
+.form input:focus,.form textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+.form button{margin-top:12px;justify-content:center;cursor:pointer}
+.form-status{font-size:14px;margin:8px 0 0;min-height:1em}
+.form-status.ok{color:#1a7f37}
+.form-status.err{color:#c0392b}
+.hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+@media (max-width:860px){.contact-grid{grid-template-columns:1fr}}
+footer{border-top:1px solid var(--line);padding:34px 0 46px;margin-top:20px}
+.contact{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+.small-note{color:var(--muted);font-size:13px;margin-top:18px}
+
+@media (max-width:860px){
+  .hero-grid{grid-template-columns:1fr;gap:24px;text-align:left}
+  .avatar{width:130px;height:130px}
+  .avatar span{font-size:40px}
+  h1{font-size:32px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .grid-3{grid-template-columns:1fr}
+  .grid-2{grid-template-columns:1fr}
+  .flagship{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  .wrap{padding:0 16px}
+  .hero{padding:40px 0 24px}
+  h1{font-size:28px}
+  .role{font-size:17px}
+  .links{gap:14px}
+  section{padding:34px 0}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="logo">Md Mahabubur Rahman</a>
+    <div class="links">
+      <a href="#education">Education</a>
+      <a href="#areas">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#recognition">Awards</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:auto"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="avatar">
+      <img src="profile.jpg" alt="Md Mahabubur Rahman" onerror="this.remove();document.getElementById('initials').style.display='block'">
+      <span id="initials" style="display:none">MR</span>
+    </div>
+    <div>
+      <span class="eyebrow">PhD Researcher · AI for Predictive Maintenance</span>
+      <h1 style="margin-bottom:18px">Md Mahabubur Rahman</h1>
+      <p class="lead">I am completing a PhD in Computing at Glasgow Caledonian University, in collaboration with Siemens Mobility Limited. My work develops AI-driven predictive maintenance for safety-critical railway systems, combining time-series and deep learning forecasting, reliability analysis, multi-criteria decision support and explainable AI in a deployable end-to-end workflow.</p>
+      <div class="btns">
+        <a class="btn primary" href="Md_Mahabubur_Rahman_CV.pdf" target="_blank" rel="noopener">⬇ Download CV</a>
+        <a class="btn" href="mailto:lizuahmed444@gmail.com">✉ Email</a>
+        <a class="btn" href="https://scholar.google.com/citations?user=LMrV_CQAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+        <a class="btn" href="https://www.linkedin.com/in/md-mahabubur-rahman-5b5584146/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/Mahabuburr" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <div class="meta">
+        <span>📍 Glasgow, United Kingdom</span>
+        <span>ORCID: <a href="https://orcid.org/0009-0003-5051-4210" target="_blank" rel="noopener">0009-0003-5051-4210</a></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+
+<section id="education">
+  <div class="wrap">
+    <h2>Education</h2>
+    <div class="edu">
+      <div class="card">
+        <div class="t-head"><h3>PhD, Computing</h3><span class="t-date">Jan 2024 – Present</span></div>
+        <div class="t-org">Glasgow Caledonian University, Glasgow, UK · in collaboration with Siemens Mobility Limited</div>
+        <p class="edu-thesis"><b>Thesis:</b> Railway rolling stock fleet data analytics towards reliability and performance prediction (thesis by publication).</p>
+        <ul>
+          <li>Predictive, reliability and maintenance decision-support methods for five safety-critical rolling-stock subsystems: CCTV, passenger doors, autocoupler, traction converter and pantograph.</li>
+          <li>Methods: Bi-GRU and LSTM sequence models; SARIMAX, ETS and hybrid ARIMA-ANN forecasting; FMEA, SVM and Markov-chain risk modelling; fault tree analysis; multi-criteria decision analysis with Monte Carlo testing; explainable AI.</li>
+          <li>Work presented in six peer-reviewed publications and at international railway conferences.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="t-head"><h3>MSc Advanced Data Science <span class="dist">Distinction</span></h3><span class="t-date">Sep 2022 – Dec 2023</span></div>
+        <div class="t-org">Bangor University, Bangor, UK</div>
+        <p class="edu-thesis"><b>Dissertation:</b> Using machine learning and computer vision approaches in automatic data analysis for advanced manufacturing.</p>
+        <ul>
+          <li>Built an image-based inspection pipeline for scanning electron microscope (SEM) micrographs of additively manufactured parts.</li>
+          <li>Annotated the images (LabelMe), then trained and compared Mask R-CNN, Faster R-CNN, RetinaNet and YOLOv8 to detect, segment and measure unmelted particles, porosity and microcracks.</li>
+          <li>Tools: Python, Google Colab, deep learning object detection and segmentation frameworks.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="t-head"><h3>BSc Computer Science and Engineering <span class="dist">CGPA 3.50 / 4.00</span></h3><span class="t-date">Feb 2017 – Apr 2021</span></div>
+        <div class="t-org">Bangladesh University of Business &amp; Technology (BUBT), Dhaka, Bangladesh</div>
+        <p class="edu-thesis"><b>Thesis:</b> Breast cancer classification using deep learning technique with mammogram images.</p>
+        <ul>
+          <li>Developed a convolutional neural network (CNN) on the mini-MIAS mammography dataset to classify mammograms as normal or abnormal.</li>
+          <li>Built the model in Python using Google Colab, covering image preparation, model training and evaluation.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="areas">
+  <div class="wrap">
+    <h2>Research areas</h2>
+    <p class="sub">My research sits where machine learning meets engineering decision-making: building AI that engineers can trust, understand and act on.</p>
+    <div class="grid-3">
+      <div class="card area"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg></div><div><h3>AI &amp; Machine Learning for Reliability Engineering</h3><p>Combining machine learning with fault tree analysis, FMEA, Markov risk states, MTBF and Monte Carlo robustness testing.</p></div></div>
+      <div class="card area"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div><div><h3>Predictive Maintenance</h3><p>Forecasting failures before they happen and turning predictions into prioritised maintenance actions for safety-critical assets.</p></div></div>
+      <div class="card area"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="11" rx="3"/><path d="M6 21l2-4M18 21l-2-4M2 11h20"/></svg></div><div><h3>Railway Asset Performance Analytics</h3><p>Linking failures to delays, cancellations and maintenance effort to understand and improve fleet performance.</p></div></div>
+      <div class="card area"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div><div><h3>Time-Series &amp; Deep Sequence Modelling</h3><p>SARIMAX, ETS, hybrid ARIMA-ANN, LSTM and Bi-GRU models for event-based fault and operational data.</p></div></div>
+      <div class="card area"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/></svg></div><div><h3>Explainable &amp; Trustworthy AI</h3><p>Making model behaviour visible to engineers through post-hoc explanations and transparent decision criteria.</p></div></div>
+      <div class="card area"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9z"/></svg></div><div><h3>Agentic AI for Engineering Decisions</h3><p>Local LLM agents grounded in verified data, with approved tools and human-in-the-loop control.</p></div></div>
+      <div class="card area"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="4"/></svg></div><div><h3>Computer Vision for Inspection</h3><p>Object detection and segmentation of defects in industrial and medical images.</p></div></div>
+      <div class="card area"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg></div><div><h3>Decision Science &amp; MCDA</h3><p>AHP, TOPSIS, PROMETHEE II and ELECTRE for ranking maintenance options under conflicting criteria.</p></div></div>
+      <div class="card area"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div><div><h3>Data Engineering &amp; Deployment</h3><p>SQL pipelines, data quality, REST APIs, model versioning and dashboards that put models into use.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="research">
+  <div class="wrap">
+    <h2>Doctoral research</h2>
+    <p class="sub"><i>Railway rolling stock fleet data analytics towards reliability and performance prediction</i> — multi-year fault, maintenance and service-impact data from an electric multiple unit fleet, with methods chosen to suit each subsystem's failure behaviour and data quality.</p>
+    <div class="grid-3">
+      <div class="card">
+        <span class="tag">CCTV</span>
+        <h3>Failure forecasting</h3>
+        <p>Weekly and monthly forecasting with Random Forest, SARIMAX, ETS, LSTM and CNN models, compared across locations.</p>
+        <div class="chips"><span class="chip">SARIMAX</span><span class="chip">LSTM</span><span class="chip">CNN</span></div>
+      </div>
+      <div class="card">
+        <span class="tag">Passenger doors</span>
+        <h3>Deep sequence risk forecasting</h3>
+        <p>Bidirectional GRU forecasting at fleet and unit level, with predicted failures translated into Low, Medium and High risk for engineers.</p>
+        <div class="chips"><span class="chip">Bi-GRU</span><span class="chip">Risk classes</span></div>
+      </div>
+      <div class="card">
+        <span class="tag">Autocoupler</span>
+        <h3>Hybrid AI risk modelling</h3>
+        <p>FMEA, SVM classification and discrete-time Markov chains to classify components by risk and track how that risk evolves over time.</p>
+        <div class="chips"><span class="chip">FMEA</span><span class="chip">SVM</span><span class="chip">Markov chains</span></div>
+      </div>
+      <div class="card">
+        <span class="tag">Traction converter</span>
+        <h3>Reliability analysis</h3>
+        <p>Fault tree analysis, MTBF, mission-failure probability and trend testing to identify the dominant failure contributors.</p>
+        <div class="chips"><span class="chip">FTA</span><span class="chip">MTBF</span><span class="chip">Trend tests</span></div>
+      </div>
+      <div class="card">
+        <span class="tag">Pantograph</span>
+        <h3>Failure analysis with service impact</h3>
+        <p>Hybrid ARIMA-ANN short-term forecasting linked to delay minutes and cancellations, capturing operational consequences as well as failures.</p>
+        <div class="chips"><span class="chip">ARIMA-ANN</span><span class="chip">Service impact</span></div>
+      </div>
+      <div class="card">
+        <span class="tag">Fleet level</span>
+        <h3>Maintenance prioritisation</h3>
+        <p>Multi-criteria decision analysis ranks maintenance candidates across subsystems, with Monte Carlo testing of how robust each ranking is.</p>
+        <div class="chips"><span class="chip">AHP</span><span class="chip">TOPSIS</span><span class="chip">PROMETHEE II</span><span class="chip">ELECTRE</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<section id="publications">
+  <div class="wrap">
+    <h2>Publications</h2>
+    <p class="sub">First-author, peer-reviewed. Co-authors: B. Alkali, A. K. Jain, J. Parrilla-Gutierrez, C. McNeil, J. Nelson.</p>
+    <ol class="pubs">
+      <li><span class="title">The application of time series predictive maintenance model on rolling stock critical systems<span class="year">2025</span></span><span class="venue">Advances in Mechanical Engineering, 17(10) · <a href="https://doi.org/10.1177/16878132251384345" target="_blank" rel="noopener">doi:10.1177/16878132251384345</a></span></li>
+      <li><span class="title">Risk-based predictive maintenance of EMU autocouplers: a hybrid AI modelling approach<span class="year">2026</span></span><span class="venue">7th International Conference on Railway Technology · Civil-Comp Press · <a href="https://doi.org/10.4203/ccc.15.8.3" target="_blank" rel="noopener">doi:10.4203/ccc.15.8.3</a></span></li>
+      <li><span class="title">Pantograph failure analysis and short-term forecasting for EMU fleet using hybrid and machine learning models<span class="year">2026</span></span><span class="venue">7th International Conference on Railway Technology · Civil-Comp Press · <a href="https://doi.org/10.4203/ccc.15.8.1" target="_blank" rel="noopener">doi:10.4203/ccc.15.8.1</a></span></li>
+      <li><span class="title">A data-driven approach for optimising rolling stock fleet using time series analysis and SARIMAX model<span class="year">2025</span></span><span class="venue">13th IMA International Conference on Modelling in Industrial Maintenance and Reliability · <a href="https://doi.org/10.19124/ima.2025.01.34" target="_blank" rel="noopener">doi:10.19124/ima.2025.01.34</a></span></li>
+      <li><span class="title">Predictive maintenance optimisation for CCTV systems in electric multiple unit trains using machine learning techniques<span class="year">2024</span></span><span class="venue">6th International Conference on Railway Technology · Civil-Comp Press · <a href="https://doi.org/10.4203/ccc.7.8.11" target="_blank" rel="noopener">doi:10.4203/ccc.7.8.11</a></span></li>
+      <li><span class="title">Reliability analysis of electric train fleet traction converters using the fault tree analysis approach<span class="year">2025</span></span><span class="venue">10th International Conference on Product Lifecycle Modeling, Simulation and Synthesis, Pilani, India · accepted for publication</span></li>
+    </ol>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <h2>Projects</h2>
+    <p class="sub">From research models to working systems.</p>
+
+    <div class="card project">
+      <span class="tag">Flagship project</span>
+      <h3 style="font-size:20px">Predictive maintenance platform for railway fleet assets</h3>
+      <p>Maintenance teams often hold years of fault and maintenance records across separate systems, but have no simple way to see which assets are likely to fail next or where to act first. This project turns those records into forecasts, explanations and ranked maintenance priorities that engineers can use in their daily work. It extends my doctoral research with Siemens Mobility from individual models into a working end-to-end prototype.</p>
+      <ul>
+        <li><b>Data layer:</b> multi-year fault, maintenance and service-impact records are cleaned, validated and stored in Microsoft SQL Server, so every forecast and explanation is traceable.</li>
+        <li><b>Forecasting:</b> Bidirectional GRU models predict future failures at fleet and unit level, with rolling retraining when a new operating period is completed and model-version checks to avoid outdated models.</li>
+        <li><b>Explainable AI:</b> post-hoc temporal perturbation analysis shows which past periods drive each forecast, so engineers can see why a prediction changed.</li>
+        <li><b>Maintenance prioritisation:</b> multi-criteria decision analysis ranks maintenance candidates using risk, failure history, operational impact, cost and safety criteria, tested with Monte Carlo simulation.</li>
+        <li><b>Services and dashboards:</b> FastAPI REST endpoints serve predictions to Power BI dashboards showing forecasts, risk levels, explanations and priorities.</li>
+        <li><b>Agentic AI assistant:</b> a locally hosted LLM (Ollama, Qwen2.5:7b) answers engineers' questions using verified data from SQL, with approved tools only and human approval before protected steps such as retraining.</li>
+      </ul>
+      <p style="margin-top:10px"><b style="color:var(--text)">Outcome:</b> a repeatable workflow that moves from raw maintenance records to explained, prioritised maintenance decisions, supporting a shift from reactive to planned, risk-informed maintenance.</p>
+      <div class="chips"><span class="chip">Python</span><span class="chip">SQL Server</span><span class="chip">TensorFlow</span><span class="chip">FastAPI</span><span class="chip">Power BI</span><span class="chip">Explainable AI</span><span class="chip">Ollama</span><span class="chip">MCDA</span></div>
+    </div>
+
+    <div class="grid-2" style="margin-top:16px">
+      <div class="card">
+        <span class="tag">MSc · Bangor University</span>
+        <h3>Computer vision for advanced manufacturing</h3>
+        <p>Detection and segmentation of porosity, unmelted particles and microcracks in scanning electron microscope images of additively manufactured parts, comparing Mask R-CNN, Faster R-CNN, RetinaNet and YOLOv8 on annotated data.</p>
+        <div class="chips"><span class="chip">Mask R-CNN</span><span class="chip">YOLOv8</span><span class="chip">LabelMe</span></div>
+      </div>
+      <div class="card">
+        <span class="tag">BSc · BUBT</span>
+        <h3>Deep learning for medical imaging</h3>
+        <p>A convolutional neural network trained on the mini-MIAS mammography dataset to classify images as normal or abnormal.</p>
+        <div class="chips"><span class="chip">CNN</span><span class="chip">Image classification</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="experience">
+  <div class="wrap">
+    <h2>Experience</h2>
+    <p class="sub">Research, industry collaboration and teaching.</p>
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-head"><h3>PhD Researcher in Computing</h3><span class="t-date">Jan 2024 – Present</span></div>
+          <div class="t-org">Glasgow Caledonian University, with Siemens Mobility Limited</div>
+          <p>Predictive maintenance for safety-critical railway systems; working with engineering, maintenance and data teams on requirements, validation and communication of results.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-head"><h3>Graduate Teaching Assistant</h3><span class="t-date">Sep 2024 – Present</span></div>
+          <div class="t-org">Glasgow Caledonian University</div>
+          <p>Tutorials and labs in Engineering Mathematics, Mathematics 1 and 2, MATLAB and the Predictive Maintenance Lab; mentoring an MSc dissertation project.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-head"><h3>Data Science Demonstrator</h3><span class="t-date">Nov – Dec 2023</span></div>
+          <div class="t-org">Bangor University</div>
+          <p>Supported practical teaching in data science sessions.</p>
+        </div>
+      </div>
+    
+  </div>
+</section>
+
+<section id="recognition">
+  <div class="wrap">
+    <h2>Awards &amp; certificates</h2>
+    <p class="sub">Recognition for research communication and teaching.</p>
+    <div class="grid-2" style="align-items:start">
+      <div class="card">
+
+        <span class="tag">IMechE Railway Division · 2026</span>
+        <h3>1st Prize, Future of Rail Presentation Competition (Scotland Centre)</h3>
+        <p>Awarded 1st Prize for a presentation on AI-enabled predictive maintenance for railway rolling stock critical systems, and selected to represent the Scotland Centre as a national finalist at the UK final.</p>
+      </div>
+      <div class="card">
+
+        <span class="tag">Advance HE · July 2025</span>
+        <h3>Associate Fellow of the Higher Education Academy (AFHEA)</h3>
+        <p>Recognised against the Professional Standards Framework for teaching and learning support in higher education.</p>
+        <p class="note">Other training: Graduate Teaching Assistant Certificate (GCU, 2024) · Cyber Security Compliance Training (GCU, 2024) · IMechE applicant member.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2>Skills</h2>
+    <p class="sub">Tools and methods I use in practice.</p>
+    <div class="grid-3">
+      <div class="card skill-group"><h3>Programming &amp; data</h3><div class="chips"><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">SQL Server</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">SciPy</span><span class="chip">scikit-learn</span><span class="chip">statsmodels</span><span class="chip">Git / GitHub</span></div></div>
+      <div class="card skill-group"><h3>Deep learning &amp; vision</h3><div class="chips"><span class="chip">PyTorch</span><span class="chip">TensorFlow / Keras</span><span class="chip">Bi-GRU</span><span class="chip">LSTM</span><span class="chip">CNN</span><span class="chip">OpenCV</span><span class="chip">Mask R-CNN</span><span class="chip">YOLOv8</span></div></div>
+      <div class="card skill-group"><h3>Deployment &amp; AI systems</h3><div class="chips"><span class="chip">FastAPI</span><span class="chip">Uvicorn</span><span class="chip">REST APIs</span><span class="chip">Model versioning</span><span class="chip">WSL / Linux</span><span class="chip">Ollama</span><span class="chip">Qwen2.5</span><span class="chip">Agentic AI</span></div></div>
+      <div class="card skill-group"><h3>Time series &amp; reliability</h3><div class="chips"><span class="chip">SARIMAX</span><span class="chip">ETS</span><span class="chip">ARIMA-ANN</span><span class="chip">FMEA</span><span class="chip">Fault tree analysis</span><span class="chip">MTBF</span><span class="chip">Markov chains</span></div></div>
+      <div class="card skill-group"><h3>Decision support &amp; XAI</h3><div class="chips"><span class="chip">AHP</span><span class="chip">TOPSIS</span><span class="chip">PROMETHEE II</span><span class="chip">ELECTRE</span><span class="chip">Monte Carlo</span><span class="chip">Explainable AI</span></div></div>
+      <div class="card skill-group"><h3>Visualisation &amp; communication</h3><div class="chips"><span class="chip">Power BI</span><span class="chip">Matplotlib</span><span class="chip">Technical writing</span><span class="chip">Teaching &amp; training</span><span class="chip">Stakeholder engagement</span></div></div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <h2 style="margin-bottom:6px">Get in touch</h2>
+        <p class="sub" style="margin-bottom:18px">Have a question about my research, a collaboration idea or a role? Send me a message and I will reply by email.</p>
+        <div class="btns">
+          <a class="btn" href="mailto:lizuahmed444@gmail.com">✉ lizuahmed444@gmail.com</a>
+          <a class="btn" href="https://www.linkedin.com/in/md-mahabubur-rahman-5b5584146/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://orcid.org/0009-0003-5051-4210" target="_blank" rel="noopener">ORCID</a>
+        </div>
+      </div>
+      <form class="card form" id="contactForm" action="https://formsubmit.co/lizuahmed444@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New message from your website">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
+        <label for="f-name">Your name</label>
+        <input id="f-name" type="text" name="name" required placeholder="Full name">
+        <label for="f-email">Your email</label>
+        <input id="f-email" type="email" name="email" required placeholder="you@example.com">
+        <label for="f-msg">Your question or message</label>
+        <textarea id="f-msg" name="message" rows="5" required placeholder="Write your message here"></textarea>
+        <button type="submit" class="btn primary" id="sendBtn">Send message</button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+    <p class="small-note">© <span id="yr">2026</span> Md Mahabubur Rahman · Glasgow, United Kingdom. Industrial data referred to on this site is covered by a confidentiality agreement; only published and non-sensitive information is shown.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('themeBtn');
+  try{var saved=localStorage.getItem('theme'); if(saved) root.setAttribute('data-theme',saved);}catch(e){}
+  btn.addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme');
+    var dark=cur? cur==='dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var next=dark?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem('theme',next);}catch(e){}
+  });
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  // Contact form: send via FormSubmit (AJAX); fall back to the visitor's email app if it cannot be reached
+  var form=document.getElementById('contactForm');
+  if(form){
+    var status=document.getElementById('formStatus'), btn=document.getElementById('sendBtn');
+    var TO='lizuahmed444@gmail.com';
+    function mailtoLink(n,e,m){
+      return 'mailto:'+TO+'?subject='+encodeURIComponent('Website message from '+n)+'&body='+encodeURIComponent(m+'\n\n'+n+' ('+e+')');
+    }
+    form.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      if(form.elements['_honey'].value) return;
+      var n=form.elements['name'].value.trim(), e=form.elements['email'].value.trim(), m=form.elements['message'].value.trim();
+      if(!n||!e||!m){status.className='form-status err';status.textContent='Please fill in all three fields.';return;}
+      btn.disabled=true; btn.textContent='Sending…'; status.className='form-status'; status.textContent='';
+      fetch('https://formsubmit.co/ajax/'+TO,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({name:n,email:e,message:m,_subject:'New message from your website',_template:'table'})})
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if(d && (d.success===true||d.success==='true')){
+          status.className='form-status ok'; status.textContent='Thank you, your message has been sent. I will reply by email.'; form.reset();
+        } else {
+          status.className='form-status err';
+          status.innerHTML='Sorry, the message could not be sent right now. Please <a href="'+mailtoLink(n,e,m)+'">email me directly</a>.';
+        }
+      })
+      .catch(function(){
+        status.className='form-status err';
+        status.innerHTML='Sorry, the message could not be sent right now. Please <a href="'+mailtoLink(n,e,m)+'">email me directly</a>.';
+      })
+      .finally(function(){btn.disabled=false; btn.textContent='Send message';});
+    });
+  }
+
+})();
+</script>
+</body>
+</html>
